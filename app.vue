@@ -19,8 +19,18 @@
 
 <script setup lang="ts">
     const times = ref([
-        new Date('2023-01-01 00:00:00'),
-        new Date('2023-01-01 01:00:00'),
-        new Date('2023-01-01 5:00:00'),
+        { time: '2024-04-05 07:46:00', title: 'Jelgava' },
+        { time: '2024-04-05 07:51:00', title: 'Cukurfabrika' },
+        { time: '2024-04-05 07:55:00', title: 'Ozolnieki' },
+        { time: '2024-04-05 07:58:00', title: 'Cena' },
+        { time: '2024-04-05 08:02:00', title: 'Dalbe' },
+        { time: '2024-04-05 08:09:00', title: 'Olaine' },
+        { time: '2024-04-05 08:12:00', title: 'Jaunolaine' },
+        { time: '2024-04-05 08:16:00', title: 'Baloži' },
+        { time: '2024-04-05 08:20:00', title: 'Tīraine' },
+        { time: '2024-04-05 08:24:00', title: 'BA Turība' },
+        { time: '2024-04-05 08:25:00', title: 'Atgāzene' },
+        { time: '2024-04-05 08:29:00', title: 'Torņakalns' },
+        { time: '2024-04-05 08:33:00', title: 'Rīga' },
     ])
 </script>
