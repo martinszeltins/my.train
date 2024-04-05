@@ -4,6 +4,14 @@
         <div class="absolute h-[6px] bg-primary rounded-full" :style="{ width: currentTimeProportion + '%' }"></div>
         <div class="absolute h-[6px] bg-gray-200 rounded-full" :style="{ left: currentTimeProportion + '%', right: 0 }"></div>
 
+        <!-- Train Icon -->
+        <div 
+            class="absolute" 
+            :style="{ left: getTrainPosition(currentTimeProportion), bottom: '24px' }">
+
+            <NuxtImg src="/train.png" class="w-[120px]" />
+        </div>
+
         <!-- Timeline Points -->
         <div
             v-for="(item, index) in timelineItems"
@@ -55,6 +63,18 @@
         return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })
     }
 
+    const getTrainPosition = (currentTimeProportion: number): string => {
+        if (currentTimeProportion <= 7.2) {
+            return '-15px'
+        }
+
+        if (currentTimeProportion >= 100) {
+            return 'calc(100% - 120px)'
+        }
+
+        return `calc(${currentTimeProportion}% - 122px)`
+    }
+
     const updateCurrentTimeProportion = () => {
         const now = new Date().getTime()
         const times = props.times.map(item => new Date(item.time).getTime())
@@ -72,7 +92,7 @@
     onMounted(() => {
         updateCurrentTimeProportion()
 
-        intervalId = setInterval(updateCurrentTimeProportion, 10000)
+        intervalId = setInterval(updateCurrentTimeProportion, 1000)
     })
 
     onUnmounted(() => clearInterval(intervalId))
