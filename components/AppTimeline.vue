@@ -92,7 +92,7 @@
     onMounted(() => {
         updateCurrentTimeProportion()
 
-        intervalId = setInterval(updateCurrentTimeProportion, 1000)
+        intervalId = setInterval(updateCurrentTimeProportion, 10000)
     })
 
     onUnmounted(() => clearInterval(intervalId))
