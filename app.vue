@@ -24,6 +24,14 @@
                 <div @click="selectedTimes = allTimes[3]" class="bg-secondary/20 px-4 py-[2px] rounded-md hover:bg-secondary/30 transition cursor-default hover:active:bg-secondary/20">
                     R
                 </div>
+
+                <div @click="selectedTimes = allTimes[4]" class="bg-secondary/20 px-4 py-[2px] rounded-md hover:bg-secondary/30 transition cursor-default hover:active:bg-secondary/20">
+                    R
+                </div>
+
+                <div @click="selectedTimes = allTimes[5]" class="bg-secondary/20 px-4 py-[2px] rounded-md hover:bg-secondary/30 transition cursor-default hover:active:bg-secondary/20">
+                    R
+                </div>
             </div>
 
             <!-- Train Timeline -->
@@ -40,9 +48,9 @@
             {{ currentStops }}
         </div>
 
-        <!-- Current Time HH:MM -->
+        <!-- How many minutes left before arrival (x min) -->
         <div class="text-white text-[40px] mt-2">
-            {{ nowDateFormatted }}
+            {{ minutesBeforeArrival }} min
         </div>
     </div>
 </template>
@@ -104,6 +112,38 @@
             { time: '14:24:00', title: 'Olaine' },
             { time: '14:42:00', title: 'Jelgava' },
         ],
+
+        [
+            { time: '14:44:00', title: 'Rīga' },
+            { time: '14:49:00', title: 'Torņakalns' },
+            { time: '14:52:00', title: 'Atgāzene' },
+            { time: '14:53:00', title: 'BA Turība' },
+            { time: '14:56:00', title: 'Tīraine' },
+            { time: '15:00:00', title: 'Baloži' },
+            { time: '15:04:00', title: 'Jaunolaine' },
+            { time: '15:08:00', title: 'Olaine' },
+            { time: '15:14:00', title: 'Dalbe' },
+            { time: '15:18:00', title: 'Cena' },
+            { time: '15:21:00', title: 'Ozolnieki' },
+            { time: '15:25:00', title: 'Cukurfabrika' },
+            { time: '15:29:00', title: 'Jelgava' },
+        ],
+
+        [
+            { time: '15:44:00', title: 'Rīga' },
+            { time: '15:49:00', title: 'Torņakalns' },
+            { time: '15:52:00', title: 'Atgāzene' },
+            { time: '15:53:00', title: 'BA Turība' },
+            { time: '15:56:00', title: 'Tīraine' },
+            { time: '16:00:00', title: 'Baloži' },
+            { time: '16:04:00', title: 'Jaunolaine' },
+            { time: '16:09:00', title: 'Olaine' },
+            { time: '16:15:00', title: 'Dalbe' },
+            { time: '16:19:00', title: 'Cena' },
+            { time: '16:22:00', title: 'Ozolnieki' },
+            { time: '16:26:00', title: 'Cukurfabrika' },
+            { time: '16:30:00', title: 'Jelgava' },
+        ],
     ]
 
     const selectedTimes = ref(allTimes[0])
@@ -150,5 +190,14 @@
         }
 
         return `${previousStop.title}    -->    ${currentStop.title}`
+    })
+
+    const minutesBeforeArrival = computed<number>(() => {
+        // return minutes before arrival. We know the current time. And we know the last stop time (times.value[times.value.length - 1].time)
+
+        const lastStopTime = new Date(times.value[times.value.length - 1].time)
+        const minutes = Math.floor((lastStopTime.getTime() - now.value.getTime()) / 60000)
+
+        return minutes
     })
 </script>
