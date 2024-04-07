@@ -56,6 +56,14 @@
 </template>
 
 <script setup lang="ts">
+    useSeoMeta({
+        title: 'my.train',
+        description: 'Train Schedule',
+        ogTitle: 'my.train',
+        ogDescription: 'Train Schedule',
+        ogImage: 'https://train.martinsz.lv/og-image.jpg',
+    })
+
     const now = useNow()
 
     const allTimes = [
